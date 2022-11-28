@@ -1,0 +1,8 @@
+# short-description: Create an EFI disk image with systemd-boot, kernel, and initramfs
+# long-description: Creates a partitioned EFI disk image that the user
+# can directly dd to boot media. The selected bootloader is systemd-boot. The
+# image is contained within just the kernel and initramfs, no root filesystem
+# is used.
+
+part /boot --source bootimg-efi --sourceparams="loader=systemd-boot,initrd=amd-uc.img" --ondisk sda --label msdos --active --align 1024 --use-uuid
+bootloader --ptable gpt --timeout=5
